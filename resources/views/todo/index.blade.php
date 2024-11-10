@@ -74,10 +74,10 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- 03. Searching -->
-                        <form id="todo-form" action="" method="get">
+                        <form id="todo-form" action="{{ route('todo') }}" method="get">
                             <div class="mb-3 input-group">
-                                <input type="text" class="form-control" name="search" value=""
-                                    placeholder="masukkan kata kunci">
+                                <input type="text" class="form-control" name="search"
+                                    placeholder="masukkan kata kunci" value="{{ request('search') }}">
                                 <button class="btn btn-secondary" type="submit">
                                     Cari
                                 </button>

@@ -13,9 +13,14 @@ class TodoController extends Controller
      */
     public function index()
     {
+        if (request('search')) {
+            $tasks = Todo::where('task', 'like', '%' . request('search') . '%')->get();
+        } else {
+            $tasks = Todo::orderBy('task', 'asc')->get();
+        }
 
         $data = [
-            "tasks" => Todo::orderBy('task', 'asc')->get(),
+            "tasks" => $tasks,
             "title" => "Todo List App",
             "name" => "Ali"
         ];
