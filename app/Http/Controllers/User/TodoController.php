@@ -13,10 +13,12 @@ class TodoController extends Controller
      */
     public function index()
     {
+        $max_data = 5;
+
         if (request('search')) {
-            $tasks = Todo::where('task', 'like', '%' . request('search') . '%')->get();
+            $tasks = Todo::where('task', 'like', '%' . request('search') . '%')->paginate($max_data)->withQueryString();
         } else {
-            $tasks = Todo::orderBy('task', 'asc')->get();
+            $tasks = Todo::orderBy('task', 'asc')->paginate($max_data);
         }
 
         $data = [
